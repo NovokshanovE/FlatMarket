@@ -1,15 +1,11 @@
 package models
 
-import (
-	"time"
+import "time"
 
-	"gorm.io/gorm"
-)
-
+// Flat represents an apartment in a building.
 type Flat struct {
-	gorm.Model
-	HouseID   uint      `json:"house_id"`
-	Number    int       `json:"number"`
+	ID        int       `json:"id"`
+	HouseID   int       `json:"house_id"`
 	Price     int       `json:"price"`
 	Rooms     int       `json:"rooms"`
 	Status    string    `json:"status"`
