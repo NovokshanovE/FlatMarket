@@ -3,12 +3,13 @@ package auth
 import (
 	"net/http"
 	"strings"
+
+	"github.com/google/uuid"
 )
 
-// GenerateToken generates a dummy token for the given user type.
+// GenerateToken generates a UUID token for the given user type.
 func GenerateToken(userType string) string {
-	// This is a simple token generation for demonstration purposes.
-	return "token_" + userType
+	return uuid.New().String() + "_" + userType
 }
 
 // Check if the user is a moderator based on the token

@@ -2,7 +2,6 @@ package models
 
 import "time"
 
-// Flat represents an apartment in a building.
 type Flat struct {
 	ID        int       `json:"id"`
 	HouseID   int       `json:"house_id"`

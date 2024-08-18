@@ -2,7 +2,8 @@ package models
 
 import "time"
 
-// User represents a system user with different access roles.
+var ModeratorsMap = map[string]int{}
+
 type User struct {
 	ID           int       `json:"id"`
 	Email        string    `json:"email"`

@@ -2,7 +2,6 @@ package models
 
 import "time"
 
-// House represents a building with multiple apartments.
 type House struct {
 	ID            int        `json:"id"`
 	Address       string     `json:"address"`
