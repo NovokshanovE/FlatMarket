@@ -14,7 +14,7 @@ import (
 
 func CreateHouse(houseService *services.HouseService) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
-		// Check if user is a moderator
+
 		if !auth.IsModerator(r) {
 			http.Error(w, "Unauthorized", http.StatusUnauthorized)
 			return
@@ -26,7 +26,6 @@ func CreateHouse(houseService *services.HouseService) http.HandlerFunc {
 			return
 		}
 
-		// Insert house into database
 		if err := houseService.CreateHouse(&house); err != nil {
 			http.Error(w, "Internal server error", http.StatusInternalServerError)
 			return
@@ -39,7 +38,7 @@ func CreateHouse(houseService *services.HouseService) http.HandlerFunc {
 
 func GetFlatsByHouseID(houseService *services.HouseService) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
-		// Extract house ID from URL
+
 		vars := mux.Vars(r)
 		houseIDStr := vars["id"]
 		houseID, err := strconv.Atoi(houseIDStr)
@@ -48,10 +47,8 @@ func GetFlatsByHouseID(houseService *services.HouseService) http.HandlerFunc {
 			return
 		}
 
-		// Get user type from request
 		userType := auth.GetUserType(r)
 
-		// Retrieve flats from database
 		flats, err := houseService.GetFlatsByHouseID(houseID, userType)
 		if err != nil {
 			http.Error(w, "Internal server error", http.StatusInternalServerError)

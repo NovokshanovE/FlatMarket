@@ -7,12 +7,10 @@ import (
 	"github.com/google/uuid"
 )
 
-// GenerateToken generates a UUID token for the given user type.
 func GenerateToken(userType string) string {
 	return uuid.New().String() + "_" + userType
 }
 
-// Check if the user is a moderator based on the token
 func IsModerator(r *http.Request) bool {
 	authHeader := r.Header.Get("Authorization")
 	if authHeader == "" {
@@ -28,7 +26,6 @@ func IsModerator(r *http.Request) bool {
 	return strings.HasSuffix(token, "_moderator")
 }
 
-// GetUserType retrieves the user type from the token
 func GetUserType(r *http.Request) string {
 	authHeader := r.Header.Get("Authorization")
 	if authHeader == "" {

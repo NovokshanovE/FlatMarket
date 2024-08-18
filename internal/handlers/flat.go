@@ -17,10 +17,8 @@ func CreateFlat(flatService *services.FlatService) http.HandlerFunc {
 			return
 		}
 
-		// Set default status to 'created'
 		flat.Status = "created"
 
-		// Insert flat into database
 		if err := flatService.CreateFlat(&flat); err != nil {
 			http.Error(w, "Internal server error", http.StatusInternalServerError)
 			return
@@ -33,7 +31,7 @@ func CreateFlat(flatService *services.FlatService) http.HandlerFunc {
 
 func UpdateFlat(flatService *services.FlatService) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
-		// Check if user is a moderator
+
 		if !auth.IsModerator(r) {
 			http.Error(w, "Unauthorized", http.StatusUnauthorized)
 			return
@@ -45,7 +43,6 @@ func UpdateFlat(flatService *services.FlatService) http.HandlerFunc {
 			return
 		}
 
-		// Update flat in database
 		if err := flatService.UpdateFlat(&flat); err != nil {
 			http.Error(w, "Internal server error", http.StatusInternalServerError)
 			return

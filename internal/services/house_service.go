@@ -7,12 +7,10 @@ import (
 	"github.com/NovokshanovE/FlatMarket/internal/models"
 )
 
-// HouseService provides operations on houses.
 type HouseService struct {
 	DB *sql.DB
 }
 
-// CreateHouse creates a new house in the database.
 func (hs *HouseService) CreateHouse(house *models.House) error {
 	query := `
         INSERT INTO houses (address, year, developer, created_at)
@@ -23,7 +21,6 @@ func (hs *HouseService) CreateHouse(house *models.House) error {
 	return err
 }
 
-// GetFlatsByHouseID retrieves flats by house ID with filtering based on user type.
 func (hs *HouseService) GetFlatsByHouseID(houseID int, userType string) ([]models.Flat, error) {
 	query := `
         SELECT id, house_id, price, rooms, status, created_at

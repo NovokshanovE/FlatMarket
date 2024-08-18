@@ -7,12 +7,10 @@ import (
 	"github.com/NovokshanovE/FlatMarket/internal/models"
 )
 
-// FlatService provides operations on flats.
 type FlatService struct {
 	DB *sql.DB
 }
 
-// CreateFlat creates a new flat in the database.
 func (fs *FlatService) CreateFlat(flat *models.Flat) error {
 	query := `
         INSERT INTO flats (house_id, price, rooms, status, created_at)
@@ -24,7 +22,6 @@ func (fs *FlatService) CreateFlat(flat *models.Flat) error {
 		return err
 	}
 
-	// Update the last_flat_added column in the houses table
 	updateQuery := `
         UPDATE houses SET last_flat_added = $1 WHERE id = $2
     `
@@ -32,7 +29,6 @@ func (fs *FlatService) CreateFlat(flat *models.Flat) error {
 	return err
 }
 
-// UpdateFlat updates an existing flat in the database.
 func (fs *FlatService) UpdateFlat(flat *models.Flat) error {
 	query := `
         UPDATE flats SET price = $1, rooms = $2, status = $3 WHERE id = $4
